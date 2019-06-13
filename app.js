@@ -39,8 +39,6 @@ var grid = [
     ]
     // ======================
 
-
-
 function turnLeft(rover) {
     switch (rover.direction) {
         case rover.direction = "N":
@@ -147,29 +145,7 @@ function moveBackward(rover) {
     obstacleAhead(rover);
 };
 
-function moveRover(rover) {
-    var command = prompt("Please give your command for Rover " + rover.name + "!");
-    for (var k = 0; k < command.length; k++) {
-        switch (command[k]) {
-            case 'f':
-                moveForward(rover);
-                break;
-            case 'b':
-                moveBackward(rover);
-                break;
-            case 'r':
-                turnRight(rover);
-                break;
-            case 'l':
-                turnLeft(rover);
-                break;
-            default:
-                console.log('Unknown command, only allowed: "f", "b", "r", "l"');
-        }
-    }
-    console.log(rover.travelLog);
-}
-
+// check for obstacle or other rover when moving forward or backward//
 function obstacleAhead(rover) {
     if (grid[rover.postY][rover.postX] === 'x') {
         console.log("Obstacle ahead, cannot move!")
@@ -192,4 +168,27 @@ function obstacleAhead(rover) {
         rover.postX = rover.travelLog[length - 1][0];
         rover.postY = rover.travelLog[length - 1][1];
     } else { console.log("Current position:" + rover.postX + "," + rover.postY) }
+}
+
+function moveRover(rover) {
+    var command = prompt("Please give your command for Rover " + rover.name + "!");
+    for (var k = 0; k < command.length; k++) {
+        switch (command[k]) {
+            case 'f':
+                moveForward(rover);
+                break;
+            case 'b':
+                moveBackward(rover);
+                break;
+            case 'r':
+                turnRight(rover);
+                break;
+            case 'l':
+                turnLeft(rover);
+                break;
+            default:
+                console.log('Unknown command, only allowed: "f", "b", "r", "l"');
+        }
+    }
+    console.log(rover.travelLog);
 }
